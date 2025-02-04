@@ -1,82 +1,152 @@
-# Solana Trading Telegram Bot
+# 🚀 Solana Trading Telegram Bot
+Your personal trading companion for the Solana blockchain! This powerful Telegram bot helps you trade like a pro with automated features, real-time monitoring, and smart wallet management.
 
-A highly advanced Telegram bot built for the Solana blockchain that focuses on automated trading and launch sniping. The bot supports trading on **Raydium** and **Pumpfun** liquidity platforms exclusively, and it features powerful scraper integrations for **Twitter** and **Telegram**. In addition, the bot includes a new launch snipe module built on Pumpfun.
+## ✨ What Can This Bot Do?
 
----
+### 🎯 Core Features
 
-## Table of Contents
+- **Smart Trading**
+  - Buy and sell tokens automatically
+  - Set up limit orders (take profit & stop loss)
+  - Execute trades through multiple platforms
+  - Snipe new tokens as soon as they launch 🎯
 
-- [Features](#features)
-- [Installation](#installation)
-- [Environment Variables](#environment-variables)
-- [Usage](#usage)
-- [File Structure](#file-structure)
-- [Contributing](#contributing)
-- [Troubleshooting](#troubleshooting)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
+- **Wallet Management**
+  - Create new wallets or import existing ones
+  - Track your balances in real-time
+  - Switch between wallets with ease
 
----
+- **First build-in Scraper Feature**
+  - Twitter Scraper
+     - Advanced CA Detection
+     - <250ms tweet detection
+     
+  - Telegram Channel/Group Scraper
+     - Bot/User/Admin Filter
+     - Advanced CA Detection
+     - ReBuy Protection
 
-## Features
+## 🛠️ Tech Stack
+- TypeScript (runs on Node.js or Bun)
+- MongoDB for data storage
+- Redis for lightning-fast caching
+- Multiple APIs (Helius, Quicknode, GRPC)
 
-- **Trading Support Platforms (Raydium & Pumpfun Only)**  
-  - **Raydium & Pumpfun Swap Integration:**  
-    The bot exclusively supports trading on Raydium and Pumpfun liquidity pools. It uses the Jupiter API for live token quotes and performs swaps through a unified SwapSystem utilizing these two platforms.
-  - **Auto Trading & Limit Orders:**  
-    Automated buy and sell operations using configurable limit orders (take profit / stop loss). (All auto trading operations are supported on Raydium and Pumpfun.)
-
-- **Wallet Management**  
-  - Create new wallets, import existing ones, export private keys securely.
-  - View wallet balances in SOL and USD with live price feeds.
-
-- **Market Data Integration**  
-  - Live SOL price updates and robust token data retrieval via the Jupiter API.
-  - Redis caching is used to optimize repeated data requests and reduce API load.
-
-- **PNL Reporting**  
-  - Generate high-quality, modern PNL report images using Puppeteer and Tailwind CSS.
-  - New design features a dark mode theme with large, clear fonts and responsive layout.
-  - Detailed metrics include Cost, Current Value, Profit, ROI, Price, Market Cap, and Liquidity.
-  - Interactive exchange links to Solscan, BirdEye, Pump.fun, etc.
-
-- **Scraper Platforms (Twitter & Telegram)**  
-  - **Twitter Scraper:**  
-    The bot monitors Twitter channels using a Tweet Catcher Auth Token to filter and identify new token-related messages.
-  - **Telegram Scraper:**  
-    The bot also scrapes messages from Telegram channels/groups for token announcements.
-  - Both scraper integrations support blacklist filtering and social links verification to avoid scams or misleading tokens.
-
-- **New Launch Snipe Platform (Pumpfun)**  
-  - **Pumpfun Launch Sniping:**  
-    The bot includes a dedicated launch snipe module built on Pumpfun. It monitors new mints on Pumpfun in real time and automatically initiates a buy when a new token is detected, based on user-configurable parameters.
-  
-- **Performance & Monitoring**  
-  - Uses MongoDB for persisting user and session data, and Redis for caching critical runtime data.
-  - Cron jobs and periodic warmup routines ensure efficient performance and timely data updates.
-  - Detailed logging, error handling, and event-based monitoring provide resilient operation in live markets.
-
-- **Administration & Utilities**  
-  - Comprehensive command and callback handler suite for trading, wallet management, settings, sniper operations, and more.
-  - PM2 process management integration for production deployments.
-  - Built-in error and performance reporting via custom middleware and logging.
-
----
-
-## Installation
+## 📦 Getting Started
 
 ### Prerequisites
+- Node.js or Bun
+- MongoDB
+- Redis
+- Telegram Bot Token (get it from [@BotFather](https://t.me/botfather))
 
-- **Node.js** (v16+) with npm or bun  
-- **MongoDB** instance (local or cloud)  
-- **Redis** instance  
-- Linux systems: Install required libraries for Puppeteer (e.g., `libatk-1.0-0`, `libgtk-3-0`, etc.). See [Puppeteer Troubleshooting](https://pptr.dev/troubleshooting) for more info.
+### Quick Setup
 
-### Clone & Install
+1. **Clone & Install**
+   ```bash
+   git clone https://github.com/enesahn/SolanaTelegramBot.git
+   cd SolanaTelegramBot
+   npm install   # or 'bun install' if you're using Bun
+   ```
 
-```bash
-git clone https://github.com/yourusername/solana-trading-telegram-bot.git
-cd solana-trading-telegram-bot
-npm install
-# or if using bun:
-bun install
+2. **Set Up Your Environment**
+   Create a `.env` file with your secrets 🔐
+
+3. **Launch! 🚀**
+   ```bash
+   npm run dev    # for development
+   npm run start  # for production
+   ```
+
+## 🔑 Environment Variables
+
+### Core Settings
+```env
+BOT_TOKEN=your-telegram-bot-token
+MONGODB_URI=your-mongodb-connection-string
+REDIS_URL=your-redis-url
+```
+
+### Blockchain Connections
+```env
+# Helius Endpoints
+HELIUS_RPC_HTTP=https://api.mainnet-beta.solana.com
+HELIUS_RPC_WS=wss://api.mainnet-beta.solana.com
+HELIUS_RPC_STAKED_HTTP=https://solana-mainnet.rpcpool.com
+
+# GRPC Settings
+GRPC_ENDPOINT=https://grpc.ams.shyft.to
+GRPC_TOKEN=your-grpc-auth-token
+
+# Quicknode Access
+QUICKNODE_HTTP=https://solana-mainnet.quicknode.pro/your-api-key
+QUICKNODE_WS=wss://solana-mainnet.quicknode.pro/your-api-key
+```
+
+## 📁 Project Structure
+```
+src/
+├── config/      # Bot configuration files
+├── cron/        # Scheduled tasks
+├── handlers/    # Command & event handlers
+├── messages/    # User communication templates
+├── models/      # Database schemas
+├── services/    # Core business logic
+├── swaps/       # Trading execution code
+└── utils/       # Helper functions
+```
+
+## 🚀 Features In Detail
+
+### 🎯 Social Scrapers
+
+#### 📱 Twitter Scraper
+- **Ultra-Fast Detection**
+  - Sub-250ms tweet detection capability
+  - Real-time stream processing
+  - Minimal latency for faster trading execution
+- **Smart Contract Address (CA) Detection**
+  - Advanced CA identification
+  - Multi-format support (raw address, embedded links)
+  - Automatic verification and validation
+
+#### 💬 Telegram Scraper
+- **Advanced Filtering System**
+  - Bot detection and filtering
+  - Admin message prioritization
+- **Smart Features**
+  - Automatic CA detection and validation
+  - ReBuy Protection to prevent duplicate purchases
+  - Custom filter configurations
+- **Performance Optimization**
+  - Parallel message processing
+  - Rate limit handling
+  - Resource-efficient monitoring
+
+### 🔎 **Advanced Smart Contract Address (CA) Detection**
+- **Handles Special Characters**: Detects CA even with special characters or unusual formats
+- **Partial CA Detection**: Identifies split or incomplete contract addresses
+- **Multi-Format Support**: Recognizes raw addresses, embedded links, and hidden CA formats
+- **Automated Verification**: Ensures validity before execution
+- **Cross-Platform Scraping**: Works across different sources like Twitter and Telegram
+
+### 💼 Wallet Management
+- Secure wallet creation and import
+- Multi-wallet support
+- Real-time balance tracking
+
+### 📊 Monitoring & Reports
+- Real-time portfolio tracking
+- PnL calculations and visualization
+
+## 🤝 Contributing
+Got ideas? We'd love to hear them! Feel free to:
+- Open issues
+- Submit pull requests
+- Suggest new features
+
+## 📝 License
+This project its still building. If u have a question TELEGRAM: @nidtowest
+
+---
+Happy Trading! 🚀✨

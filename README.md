@@ -20,11 +20,18 @@ Your personal trading companion for the Solana blockchain! This powerful Telegra
   - Twitter Scraper
      - Advanced CA Detection
      - <250ms tweet detection
+     - Blacklist Word Filtering
      
   - Telegram Channel/Group Scraper
      - Bot/User/Admin Filter
      - Advanced CA Detection
      - ReBuy Protection
+     - Blacklist Word Filtering
+
+  - Discord Scraper
+     - Custom User Message Filter
+     - Blacklist Word Filtering
+     - Advanced CA Detection
 
 ## 🛠️ Tech Stack
 - TypeScript (runs on Node.js or Bun)
@@ -109,6 +116,9 @@ src/
   - Advanced CA identification
   - Multi-format support (raw address, embedded links)
   - Automatic verification and validation
+- **Blacklist Word Filtering**
+  - Avoids rug token messages etc.
+  - Ensures trading security
 
 #### 💬 Telegram Scraper
 - **Advanced Filtering System**
@@ -118,17 +128,28 @@ src/
   - Automatic CA detection and validation
   - ReBuy Protection to prevent duplicate purchases
   - Custom filter configurations
+- **Blacklist Word Filtering**
+  - Avoids rug token messages etc.
 - **Performance Optimization**
   - Parallel message processing
   - Rate limit handling
   - Resource-efficient monitoring
+
+#### 🎮 Discord Scraper
+- **Custom User Message Filtering**
+  - Filters messages based on user-defined criteria
+- **Blacklist Word Filtering**
+  - Avoids rug token messages etc.
+- **Smart Contract Address (CA) Detection**
+  - Identifies contract addresses in Discord messages
+  - Multi-format support
 
 ### 🔎 **Advanced Smart Contract Address (CA) Detection**
 - **Handles Special Characters**: Detects CA even with special characters or unusual formats
 - **Partial CA Detection**: Identifies split or incomplete contract addresses
 - **Multi-Format Support**: Recognizes raw addresses, embedded links, and hidden CA formats
 - **Automated Verification**: Ensures validity before execution
-- **Cross-Platform Scraping**: Works across different sources like Twitter and Telegram
+- **Cross-Platform Scraping**: Works across different sources like Twitter, Telegram, and Discord
 
 ### 💼 Wallet Management
 - Secure wallet creation and import
